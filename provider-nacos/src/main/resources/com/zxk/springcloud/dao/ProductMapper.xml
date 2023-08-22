@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxk.springcloud.dao.ProductMapper">
+    <select id="getProduct" parameterType="com.zxk.springcloud.model.Product"
+            resultType="com.zxk.springcloud.model.Product">
+        select id, product_name, product_num from provider where id = #{id}
+    </select>
+
+    <update id="updateProduct" parameterType="com.zxk.springcloud.model.Product">
+        update provider set product_num = #{productNum} where id = #{id}
+    </update>
+</mapper>

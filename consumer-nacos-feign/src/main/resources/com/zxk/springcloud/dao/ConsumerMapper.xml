@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxk.springcloud.dao.ConsumerMapper">
+    <select id="getConsumer" parameterType="com.zxk.springcloud.model.Consumer"
+            resultType="com.zxk.springcloud.model.Consumer">
+        select id, username, money from consumer where id = #{id}
+    </select>
+    <insert id="saveConsumer" parameterType="com.zxk.springcloud.model.Consumer">
+        insert into consumer (id, username, money) VALUES (#{username}, #{username}, #{money})
+    </insert>
+    <update id="updateConsumer" parameterType="com.zxk.springcloud.model.Consumer">
+        update consumer set money = #{money} where username = #{username}
+    </update>
+</mapper>

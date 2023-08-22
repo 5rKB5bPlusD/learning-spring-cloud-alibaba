@@ -1,0 +1,62 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: consumer-nacos-feign
+  cloud:
+    nacos:
+      server-addr: http://192.168.0.107:8848
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: public
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&useCharacterEncoding=utf-8&rewriteBatchedStatements=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
+
+
+feign:
+  client:
+    config:
+      provider-nacos:
+        logger-level: full
+        connect-timeout: 2000
+        read-timeout: 3000
+        request-interceptors:
+          - com.zxk.springcloud.feign.interceptor.CustomFeignInterceptor
+
+logging:
+  level:
+    com.zxk.springcloud.feign.service.FeignProviderService: debug
+
+# 开启饥饿负载均衡，启动时就进行负载均衡的加载初始化
+ribbon:
+  eager-load:
+    enabled: true
+    clients: provider-nacos
+
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: ${spring.cloud.nacos.server-addr}
+      username: ${spring.cloud.nacos.discovery.username}
+      password: ${spring.cloud.nacos.discovery.password}
+      namespace: 7fac1a7b-a6e1-4347-a2d1-73c675e56121
+  config:
+    type: nacos
+    nacos:
+      server-addr: ${spring.cloud.nacos.server-addr}
+      username: ${spring.cloud.nacos.discovery.username}
+      password: ${spring.cloud.nacos.discovery.password}
+      namespace: 7fac1a7b-a6e1-4347-a2d1-73c675e56121
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

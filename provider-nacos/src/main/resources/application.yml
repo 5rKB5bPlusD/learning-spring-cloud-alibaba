@@ -1,0 +1,53 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: provider-nacos
+  cloud:
+    nacos:
+      server-addr: http://192.168.0.107:8848
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: public
+    sentinel:
+      transport:
+        dashboard: http://127.0.0.1:9001
+      datasource:
+        flow-rule:
+          nacos:
+            server-addr: http://192.168.0.107:8848
+            username: nacos
+            password: nacos
+            namespace: public
+            data-id: sentinel-config-test.json
+            rule-type: flow
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&useCharacterEncoding=utf-8&rewriteBatchedStatements=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
+
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: ${spring.cloud.nacos.server-addr}
+      username: ${spring.cloud.nacos.discovery.username}
+      password: ${spring.cloud.nacos.discovery.password}
+      namespace: 7fac1a7b-a6e1-4347-a2d1-73c675e56121
+  config:
+    type: nacos
+    nacos:
+      server-addr: ${spring.cloud.nacos.server-addr}
+      username: ${spring.cloud.nacos.discovery.username}
+      password: ${spring.cloud.nacos.discovery.password}
+      namespace: 7fac1a7b-a6e1-4347-a2d1-73c675e56121
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

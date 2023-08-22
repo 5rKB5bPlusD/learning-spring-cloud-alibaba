@@ -1,0 +1,45 @@
+[
+  {
+    "resource": "test",
+    "limitApp": "default",
+    "grade": 1,
+    "count": 5,
+    "strategy": 0,
+    "controlBehavior": 0,
+    "clusterMode": false
+  },
+  {
+    "resource": "test",
+    "limitApp": "default",
+    "grade": 0,
+    "count": 50,
+    "timeWindow": 10
+  },
+  {
+    "resource": "test",
+    "paramIdx": 0,
+    "grade": 1,
+    "count": 5,
+    "controlBehavior": 0,
+    "durationInSec": 1
+  },
+  {
+    "highestSystemLoad": -1.0,
+    "highestCpuUsage": -1.0,
+    "avgRt": -1.0,
+    "maxThread": -1.0,
+    "qps": -1.0
+  },
+  {
+    "resource": "test",
+    "limitApp": "appA",
+    "strategy": "AUTHORITY_WHITE"
+  },
+  {
+    "resource": "my_route",
+    "resourceMode": "ROUTE_ID",
+    "grade": "QPS",
+    "count": "10",
+    "controlBehavior": "DEFAULT"
+  }
+]

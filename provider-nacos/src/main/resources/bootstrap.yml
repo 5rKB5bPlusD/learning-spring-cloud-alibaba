@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      server-addr: http://192.168.0.107:8848
+      config:
+        username: nacos
+        password: nacos
+        namespace: public
+        shared-configs:
+          - data-id: provider-nacos-share-config.properties
+            refresh: true

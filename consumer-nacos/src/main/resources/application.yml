@@ -1,0 +1,16 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: consumer-nacos
+  cloud:
+    nacos:
+      server-addr: http://192.168.0.107:8848
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: public
+        register-enabled: false
+
+
